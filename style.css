@@ -1775,7 +1775,7 @@ li.nav-item {
 
 /* Testimonials CSS Start*/
 .el-testmnl-wrapper {
-  background: url("../../Frame.jpg");
+  background: url("/assets/Frame.jpg");
   background-repeat: no-repeat;
   background-position: bottom center;
   background-size: contain;
