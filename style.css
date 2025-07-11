@@ -4764,8 +4764,6 @@ h3.checkout-heading {
 
 /* Carousel Wrapper */
 .kb-carousel {
-  min-height: 400px; /* Adjust based on actual image height */
-  height: auto;
   overflow: hidden;
   position: relative;
 }
