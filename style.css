@@ -7959,8 +7959,3 @@ span .sup1 {
   }
 }
 
-@media (max-width: 768px) {
-  .el-courses-hover-wrapper {
-    display: none;
-  }
-}
