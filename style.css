@@ -7959,3 +7959,48 @@ span .sup1 {
   }
 }
 
+@media (max-width: 768px) {
+  .el-courses-dropdown-vertical {
+    display: none;
+  }
+}
+
+.desktop-only {
+  display: block;
+}
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: block;
+  }
+}
+
+.el-sub-menu .sub-menu {
+  display: none;
+  margin-top: 10px;
+  padding-left: 20px;
+  gap: 10px;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.el-sub-menu li.has-sub:hover > .sub-menu {
+  display: block;
+}
+
+.el-sub-menu li.has-sub > a {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+
+.el-sub-menu li {
+  position: relative;
+}
+
+
