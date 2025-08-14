@@ -6850,6 +6850,7 @@ p.description {
   font-size: 1.5rem;
   font-weight: 600;
   color: #123db2;
+  margin-bottom: 30px;
   padding-bottom: 8px;
 }
 
@@ -6881,13 +6882,18 @@ p.description {
   margin-bottom: 20px;
 }
 
-/* Paragraph Icon */
+/* Paragraph Icon (Only for standalone paragraphs) */
 .el-blogsingle-content .blog-para::before {
   content: "➤";
   color: #123db2;
   margin-right: 8px;
   font-size: 1rem;
   display: inline-block;
+}
+
+/* Remove paragraph arrow if inside a list item */
+.el-blogsingle-content li .blog-para::before {
+  content: none !important;
 }
 
 /* Emphasis */
@@ -6907,6 +6913,7 @@ strong {
   border-radius: 8px;
 }
 
+/* Table Styling */
 .el-blogsingle-content table {
   width: 100%;
   border-collapse: collapse;
@@ -6985,9 +6992,15 @@ strong {
   font-size: 1.05rem;
 }
 
-/* Prevent icon duplication */
+/* Prevent list icon duplication */
 .el-blogsingle-content ul li::before {
   content: none !important;
+}
+
+/* Restore normal bullets/numbers if needed */
+.el-blogsingle-content ul li,
+.el-blogsingle-content ol li {
+  list-style: inherit;
 }
 
 /* Responsive */
