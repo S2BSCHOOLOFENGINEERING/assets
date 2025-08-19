@@ -8048,16 +8048,81 @@ span .sup1 {
 /* Manual Testing Code */
 .el-video-wrapper {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column; 
+  align-items: center;
+  width: 100%;
   padding: 80px 0;
   margin-top: -10px;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
-  background-color: var(--light-bg-color);
+  background-color: var(
+    --light-bg-color
+  ); 
 }
 
+.el-video-heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* --- Background Glowing Elements --- */
+.bg-element {
+  position: absolute;
+  width: 40vw;
+  height: 40vw;
+  border-radius: 50%;
+  filter: blur(150px);
+  opacity: 0.25;
+  z-index: 0;
+  animation: glow-animation 15s infinite alternate ease-in-out;
+}
+
+.bg-element.one {
+  top: 10%;
+  left: -10%;
+}
+
+.bg-element.two {
+  bottom: 5%;
+  right: -10%;
+  animation-delay: 2s;
+}
+
+/* --- Carousel Container and Layout --- */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1600px; /* Updated width */
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+#video-carousel {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* --- Video Card Styling --- */
 .video-card-wrapper {
   position: absolute;
   transition: transform var(--transition-duration) var(--transition-easing),
@@ -8072,6 +8137,7 @@ span .sup1 {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  pointer-events: auto;
 }
 
 .video-card-wrapper video {
@@ -8080,6 +8146,7 @@ span .sup1 {
   object-fit: cover;
 }
 
+/* --- Card Positioning and States --- */
 .active-card {
   transform: translateX(0) scale(1) !important;
   opacity: 1 !important;
@@ -8091,47 +8158,12 @@ span .sup1 {
   transform: translateX(calc(-1 * var(--card-spacing))) scale(0.85) !important;
   opacity: 0.8;
   z-index: 10;
-  pointer-events: auto;
 }
 
 .neighbor-card-right {
   transform: translateX(var(--card-spacing)) scale(0.85) !important;
   opacity: 0.8;
   z-index: 10;
-  pointer-events: auto;
-}
-
-.hide-card {
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0.7) !important;
-  z-index: 5;
-}
-
-.navigation-btn {
-  z-index: 30;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  color: #e5e5f7;
-}
-
-.navigation-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-}
-
-.pagination-dot {
-  transition: all 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.4);
-}
-
-.pagination-dot.active {
-  background-color: #ffffff;
-  width: 1rem;
 }
 
 .second-left {
@@ -8148,19 +8180,134 @@ span .sup1 {
   pointer-events: none;
 }
 
+.hide-card {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.7) !important;
+  z-index: 5;
+}
+
+/* --- Navigation Buttons --- */
+.navigation-btn {
+  position: absolute;
+  z-index: 30;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px; /* Updated from 3rem */
+  height: 40px; /* Updated from 3rem */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  transition-property: all;
+  transition-duration: 300ms;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  color: #e5e5f7;
+}
+
+.navigation-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.navigation-btn.left {
+  left: 0px; /* Updated from 0 */
+}
+
+.navigation-btn.right {
+  right: 0px; /* Updated from 0 */
+}
+
+/* --- Video Controls --- */
+.video-card-controls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  color: white;
+  padding: 1rem;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.video-card-controls.active {
+  pointer-events: auto;
+}
+
+.play-pause-btn {
+  margin-bottom: 0.75rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  transition-property: all;
+  transition-duration: 300ms;
+  cursor: pointer;
+}
+
+.play-pause-btn:hover {
+  transform: scale(1.1);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 0.25rem;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.progress-indicator {
+  width: 0;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 9999px;
+}
+
+/* --- Pagination Dots --- */
+#pagination-dots {
+  position: absolute;
+  bottom: 5rem;
+  z-index: 20;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.pagination-dot {
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.pagination-dot.active {
+  background-color: #ffffff;
+  width: 1rem;
+}
+
+/* --- Keyframe Animations --- */
 @keyframes glow-animation {
   0% {
     transform: scale(1) translate(0, 0);
   }
-
   50% {
     transform: scale(1.2) translate(100px, 50px);
   }
-
   100% {
     transform: scale(1) translate(0, 0);
   }
 }
-
-
-
