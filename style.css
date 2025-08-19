@@ -6,6 +6,11 @@
   --title-color: #002b46;
   --input-bg-color: #eef3f8;
   --light-bg-color: #f5faff;
+  --card-width: 280px;
+  --card-height: 490px;
+  --card-spacing: 300px;
+  --transition-duration: 0.6s;
+  --transition-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 body {
@@ -8039,5 +8044,123 @@ span .sup1 {
 .el-sub-menu li {
   position: relative;
 }
+
+/* Manual Testing Code */
+.el-video-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 80px 0;
+  margin-top: -10px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  background-color: var(--light-bg-color);
+}
+
+.video-card-wrapper {
+  position: absolute;
+  transition: transform var(--transition-duration) var(--transition-easing),
+    opacity var(--transition-duration) var(--transition-easing),
+    z-index var(--transition-duration);
+  cursor: pointer;
+  width: var(--card-width);
+  height: var(--card-height);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.video-card-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.active-card {
+  transform: translateX(0) scale(1) !important;
+  opacity: 1 !important;
+  z-index: 20;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.neighbor-card-left {
+  transform: translateX(calc(-1 * var(--card-spacing))) scale(0.85) !important;
+  opacity: 0.8;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.neighbor-card-right {
+  transform: translateX(var(--card-spacing)) scale(0.85) !important;
+  opacity: 0.8;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.hide-card {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.7) !important;
+  z-index: 5;
+}
+
+.navigation-btn {
+  z-index: 30;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  color: #e5e5f7;
+}
+
+.navigation-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.pagination-dot {
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.pagination-dot.active {
+  background-color: #ffffff;
+  width: 1rem;
+}
+
+.second-left {
+  transform: translateX(calc(-2 * var(--card-spacing))) scale(0.7) !important;
+  opacity: 0.5;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.second-right {
+  transform: translateX(calc(2 * var(--card-spacing))) scale(0.7) !important;
+  opacity: 0.5;
+  z-index: 5;
+  pointer-events: none;
+}
+
+@keyframes glow-animation {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+
+  50% {
+    transform: scale(1.2) translate(100px, 50px);
+  }
+
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
 
 
