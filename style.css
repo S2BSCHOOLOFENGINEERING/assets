@@ -6888,7 +6888,7 @@ p.description {
 }
 
 /* Paragraph Icon (Only for standalone paragraphs) */
-.el-blogsingle-content .blog-para::before {
+.el-blogsingle-content {
   content: "➤";
   color: #123db2;
   margin-right: 8px;
