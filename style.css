@@ -8047,27 +8047,10 @@ span .sup1 {
 
 /* Manual Testing Code */
 .el-video-wrapper {
-  display: flex;
-  flex-direction: column; 
-  align-items: center;
-  width: 100%;
-  padding: 80px 0;
-  margin-top: -10px;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
-  background-color: var(
-    --light-bg-color
-  ); 
+  background-color: var(--light-bg-color);
+  padding: 80px 0px;
 }
 
-.el-video-heading {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-/* --- Background Glowing Elements --- */
 .bg-element {
   position: absolute;
   width: 40vw;
@@ -8077,29 +8060,6 @@ span .sup1 {
   opacity: 0.25;
   z-index: 0;
   animation: glow-animation 15s infinite alternate ease-in-out;
-}
-
-.bg-element.one {
-  top: 10%;
-  left: -10%;
-}
-
-.bg-element.two {
-  bottom: 5%;
-  right: -10%;
-  animation-delay: 2s;
-}
-
-/* --- Carousel Container and Layout --- */
-.carousel-container {
-  position: relative;
-  width: 100%;
-  max-width: 1600px; /* Updated width */
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
 }
 
 .carousel-wrapper {
@@ -8193,8 +8153,8 @@ span .sup1 {
   z-index: 30;
   top: 50%;
   transform: translateY(-50%);
-  width: 40px; /* Updated from 3rem */
-  height: 40px; /* Updated from 3rem */
+  width: 3rem;
+  height: 3rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8214,11 +8174,11 @@ span .sup1 {
 }
 
 .navigation-btn.left {
-  left: 0px; /* Updated from 0 */
+  left: 0;
 }
 
 .navigation-btn.right {
-  right: 0px; /* Updated from 0 */
+  right: 0;
 }
 
 /* --- Video Controls --- */
