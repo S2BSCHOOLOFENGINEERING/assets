@@ -2317,7 +2317,7 @@ li.nav-item {
 .el-blogsingle-content ul li a {
   font-size: 15px;
   font-weight: 400;
-  color: var(--title-color);
+  color: #123db2;
   text-transform: capitalize;
   transition: all 0.3s;
   align-items: center;
