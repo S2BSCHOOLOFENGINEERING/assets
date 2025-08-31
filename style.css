@@ -2320,8 +2320,6 @@ li.nav-item {
   color: var(--title-color);
   text-transform: capitalize;
   transition: all 0.3s;
-  display: flex;
-  justify-content: center;
   align-items: center;
   gap: 10px;
   transition: all 0.3s;
