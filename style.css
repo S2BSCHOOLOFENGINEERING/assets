@@ -8570,6 +8570,10 @@ span .sup1 {
     display: none;
   }
 
+  .badge-premium{
+    margin-top: 35px;
+  }
+
   .cta-container {
     justify-content: center;
   }
