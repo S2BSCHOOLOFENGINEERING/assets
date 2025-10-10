@@ -6,9 +6,9 @@
   --title-color: #002b46;
   --input-bg-color: #eef3f8;
   --light-bg-color: #f5faff;
-  --card-width: 280px;
-  --card-height: 490px;
-  --card-spacing: 300px;
+  --card-width: 340px;
+  --card-height: 600px;
+  --card-spacing: 210px;
   --transition-duration: 0.6s;
   --transition-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --dark-gray: #2a2a2a;
@@ -8050,9 +8050,12 @@ span .sup1 {
 /* Manual Testing Code */
 .el-video-wrapper {
   background-color: var(--light-bg-color);
-  padding: 80px 0px;
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
 }
 
+/* ===== Background Glow ===== */
 .bg-element {
   position: absolute;
   width: 40vw;
@@ -8064,14 +8067,14 @@ span .sup1 {
   animation: glow-animation 15s infinite alternate ease-in-out;
 }
 
+/* ===== Carousel Container ===== */
 .carousel-wrapper {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 20;
 }
 
 #video-carousel {
@@ -8082,24 +8085,24 @@ span .sup1 {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  perspective: 1800px;
 }
 
-/* --- Video Card Styling --- */
+/* ===== Video Card Base ===== */
 .video-card-wrapper {
   position: absolute;
+  width: var(--card-width);
+  height: var(--card-height);
+  border-radius: 20px;
+  overflow: hidden;
   transition: transform var(--transition-duration) var(--transition-easing),
     opacity var(--transition-duration) var(--transition-easing),
     z-index var(--transition-duration);
-  cursor: pointer;
-  width: var(--card-width);
-  height: var(--card-height);
-  border-radius: 15px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(10px);
-  border: 3px solid #123db2;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  pointer-events: auto;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transform-style: preserve-3d;
 }
 
 .video-card-wrapper video {
@@ -8108,165 +8111,176 @@ span .sup1 {
   object-fit: cover;
 }
 
-/* --- Card Positioning and States --- */
+/* ===== Active & Neighbor Cards (Balanced Layout, No Overlap) ===== */
 .active-card {
-  transform: translateX(0) scale(1) !important;
-  opacity: 1 !important;
-  z-index: 20;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  transform: translateX(0) scale(1) translateZ(0);
+  opacity: 1;
+  z-index: 25;
+  border: 4px solid #123db2;
 }
 
+/* Immediate Left & Right */
 .neighbor-card-left {
-  transform: translateX(calc(-1 * var(--card-spacing))) scale(0.85) !important;
-  opacity: 0.8;
-  z-index: 10;
+  transform: translateX(calc(-1 * var(--card-spacing))) scale(0.85)
+    rotateY(12deg);
+  z-index: 20;
 }
 
 .neighbor-card-right {
-  transform: translateX(var(--card-spacing)) scale(0.85) !important;
-  opacity: 0.8;
-  z-index: 10;
+  transform: translateX(var(--card-spacing)) scale(0.85) rotateY(-12deg);
+  z-index: 20;
 }
 
+/* Second Left & Right — Visible but Layered Properly */
 .second-left {
-  transform: translateX(calc(-2 * var(--card-spacing))) scale(0.7) !important;
-  opacity: 0.5;
-  z-index: 5;
-  pointer-events: none;
+  transform: translateX(calc(-2 * var(--card-spacing))) scale(0.75)
+    rotateY(8deg);
+  opacity: 0.7;
+  z-index: 15;
 }
 
 .second-right {
-  transform: translateX(calc(2 * var(--card-spacing))) scale(0.7) !important;
-  opacity: 0.5;
-  z-index: 5;
-  pointer-events: none;
+  transform: translateX(calc(2 * var(--card-spacing))) scale(0.75)
+    rotateY(-8deg);
+  opacity: 0.7;
+  z-index: 15;
 }
 
+/* Beyond Second Cards — Hidden */
 .hide-card {
   opacity: 0;
+  transform: scale(0.6);
   pointer-events: none;
-  transform: scale(0.7) !important;
-  z-index: 5;
+  z-index: 1;
 }
 
-/* --- Navigation Buttons --- */
+/* ===== Navigation Buttons ===== */
 .navigation-btn {
   position: absolute;
-  z-index: 30;
   top: 50%;
   transform: translateY(-50%);
-  width: 3rem;
-  height: 3rem;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 9999px;
-  transition-property: all;
-  transition-duration: 300ms;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  background: #ffffff;
+  backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  color: #e5e5f7;
+  color: black;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .navigation-btn:hover {
   background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  transform: translateY(-50%) scale(1.08);
 }
 
 .navigation-btn.left {
-  left: 0;
+  left: 2%;
 }
 
 .navigation-btn.right {
-  right: 0;
+  right: 2%;
 }
 
-/* --- Video Controls --- */
+/* ===== Video Controls Overlay ===== */
 .video-card-controls {
   position: absolute;
-  top: 0;
-  right: 0;
   bottom: 0;
   left: 0;
+  right: 0;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  color: white;
-  padding: 1rem;
-  transition: opacity 0.3s;
+  color: #fff;
+  transition: opacity 0.3s ease;
   pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
 }
 
-.video-card-controls.active {
+.video-card-wrapper:hover .video-card-controls {
+  opacity: 1;
   pointer-events: auto;
 }
 
 .play-pause-btn {
-  margin-bottom: 0.75rem;
-  width: 4rem;
-  height: 4rem;
-  border-radius: 9999px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background-color: rgba(18, 61, 178, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #e5097f;
-  backdrop-filter: blur(5px);
-  transition-property: all;
-  transition-duration: 300ms;
+  margin-bottom: 12px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(18, 61, 178, 0.4);
+}
+
+.play-pause-btn i {
+  font-size: 22px;
+  color: white;
 }
 
 .play-pause-btn:hover {
   transform: scale(1.1);
+  background-color: #0f2f80;
 }
 
 .progress-bar {
-  width: 100%;
-  height: 0.25rem;
-  background-color: rgba(255, 255, 255, 0.4);
-  border-radius: 9999px;
+  width: 90%;
+  height: 5px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
   cursor: pointer;
 }
 
 .progress-indicator {
-  width: 0;
+  width: 0%;
   height: 100%;
   background-color: #ffffff;
-  border-radius: 9999px;
+  transition: width 0.2s linear;
 }
 
-/* --- Pagination Dots --- */
+/* ===== Pagination Dots ===== */
 #pagination-dots {
-  bottom: 5rem;
+  position: absolute;
+  bottom: -35px;
   z-index: 20;
   display: flex;
-  gap: 0.75rem;
+  gap: 0.8rem;
+  justify-content: center;
+  width: 100%;
 }
 
 .pagination-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #e5097f;
+  border-radius: 50%;
   transition: all 0.3s ease;
-  background-color: rgba(255, 255, 255, 0.4);
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 9999px;
   cursor: pointer;
 }
 
 .pagination-dot.active {
-  background-color: #ffffff;
-  width: 1rem;
+  background-color: #123db2;
+  width: 18px;
 }
 
-/* --- Keyframe Animations --- */
+/* ===== Glow Animation ===== */
 @keyframes glow-animation {
   0% {
     transform: scale(1) translate(0, 0);
   }
   50% {
-    transform: scale(1.2) translate(100px, 50px);
+    transform: scale(1.15) translate(120px, 60px);
   }
   100% {
     transform: scale(1) translate(0, 0);
@@ -8340,7 +8354,6 @@ span .sup1 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
-  letter-spacing: 1.2px;
   word-break: break-word;
 }
 
