@@ -4268,12 +4268,12 @@ li.el-courses-hover-wrapper {
   background-color: #e5097f;
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 8px 10px;
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
   writing-mode: vertical-rl;
-  border-radius: 8px;
+  border-radius: 8px 0px 0px 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   margin: 5px 0;
@@ -4281,7 +4281,7 @@ li.el-courses-hover-wrapper {
 
 .vertical-button:hover {
   background-color: #123db2;
-  transform: scale(1.1);
+  transform: scale(1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
