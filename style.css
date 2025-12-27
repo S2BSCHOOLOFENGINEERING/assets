@@ -3812,7 +3812,10 @@ h3.checkout-heading {
     margin-bottom: 25px;
   }
   .el-contact-form-box {
-    width: 270px;
+    width: 320px;
+  }
+  input, select {
+    height: 50px !important;
   }
   .el-contact-form-head h4 {
     font-size: 22px;
