@@ -8733,4 +8733,10 @@ span .sup1 {
     font-size: 1.25rem;
   }
 }
-
+.el-blogsingle-table {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  display: block;
+  table-layout: fixed;
+}
