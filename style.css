@@ -3011,7 +3011,7 @@ h3.checkout-heading {
     top: 0;
     width: 100%;
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.75);
+    background: white;
   }
 }
 @media (max-width: 1850px) {
