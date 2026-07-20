@@ -117,7 +117,7 @@ function submitFormData(formData) {
   })
     .then((response) => response.text())
     .then((data) => {
-      window.location.href = "/success";
+      window.location.href = "/enrollsuccess";
     })
 
     .catch((error) => {
