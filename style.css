@@ -3215,16 +3215,14 @@ h3.checkout-heading {
   .el-nav-menu {
     position: fixed;
     top: 0;
-    left: -380px;
-    width: 380px;
-    max-width: 85vw;
+    left: -300px;
+    width: 300px;
     background: #fff;
     box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.15);
     height: 100%;
-    padding: 30px 20px 30px 30px;
+    padding: 30px 0 0 30px;
     transition: all 0.3s;
     z-index: 999;
-    overflow-y: auto;
   }
   .el-nav-menu > ul {
     align-items: baseline;
@@ -3889,8 +3887,7 @@ h3.checkout-heading {
 }
 @media (max-width: 425px) {
   .el-nav-menu {
-    width: 320px;
-    max-width: 88vw;
+    width: 250px;
   }
   .el-header-parent {
     gap: 10px;
@@ -8036,7 +8033,7 @@ span .sup1 {
   transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
 }
 
-.el-sub-menu li.has-sub.open > .sub-menu {
+.el-sub-menu li.has-sub:hover > .sub-menu {
   display: block;
 }
 
@@ -8044,22 +8041,6 @@ span .sup1 {
   position: relative;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding-right: 20px;
-}
-
-.el-sub-menu li.has-sub .arrow {
-  font-size: 18px;
-  font-weight: 700;
-  color: #b0b8c9;
-  transition: transform 0.2s ease, color 0.2s ease;
-  display: inline-block;
-}
-
-.el-sub-menu li.has-sub:hover > a .arrow,
-.el-sub-menu li.has-sub.open > a .arrow {
-  transform: rotate(90deg);
-  color: #123db2;
 }
 
 .el-sub-menu li {
